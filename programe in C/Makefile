@@ -4,7 +4,7 @@
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 
 # Executable name
 NAME = computor
@@ -15,6 +15,7 @@ SRCS = computor.c\
 	ft_strjoin.c \
 	ft_substr.c \
 
+# LM = -lm
 # Object files
 OBJS = $(SRCS:.c=.o)
 
@@ -23,7 +24,7 @@ all: $(NAME)
 
 # Rule to build the executable
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -lm
 
 # Clean object files
 clean:

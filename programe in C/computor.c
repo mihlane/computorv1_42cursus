@@ -84,14 +84,20 @@ int main(int ac, char **av)
         printf("%f------%f------ ^%f\n", one * one, zero, two);
         printf("delta  = %f\n", delta);
         if (delta == 0)
-            printf("delta is equal\n");
+        {
+            printf("Discriminant is strictly positive, the two solutions are:\n%f\n", - (one / (2 * two)));
+            exit(1);
+        }
         if (delta > 0)
         {
-            printf("Discriminant is strictly positive, the two solutions are:\n%f\n%f\n", -((one+ sqrt(delta)) / (2 * two)), ((one- sqrt(delta)) / (2 * two)));
-
+            printf("Discriminant is strictly positive, the two solutions are:\n%f\n%f\n", -((one+ sqrt(delta)) / (2 * two)), -((one- sqrt(delta)) / (2 * two)));
+            exit(0);
         }
         else
+        {
             printf("the equation has no solution\n");
+            exit(0);
+        }
         // numbers[0] = malloc(sizeof(char) * zero + 1);
         // numbers[1] = malloc(sizeof(char) * one + 1);
         // numbers[2] = malloc(sizeof(char) * two + 1);
