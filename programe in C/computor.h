@@ -5,6 +5,9 @@
 #include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include <X11/X.h>
+#include <mlx.h>
+
 // #include <stdlib.h>
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);

@@ -24,7 +24,7 @@ all: $(NAME)
 
 # Rule to build the executable
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -lm
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -lm -lmlx -lXext -lX11
 
 # Clean object files
 clean:

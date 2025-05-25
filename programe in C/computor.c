@@ -36,7 +36,22 @@ int main(int ac, char **av)
         double one = 0;
         double two = 0;
         double delta;
+        // void	*mlx_win;
+        // void *mlx;
+        // char *str = "Badrive";
+        // int red = (255 << 16); // 0xFF0000
+
+        // // int i = 50;
+        // mlx = mlx_init();
+	    // mlx_win = mlx_new_window(mlx, 1000, 1000, "Hello world!");
+        // mlx_string_put(mlx, mlx_win, 100, 100, red,str);
+        // mlx_loop(mlx);
+
+	    // img = mlx_xpm_file_to_image(mlx, "player2.xpm", &i, &i);
+	    // mlx_put_image_to_window(mlx, mlx_win, img, i, i);
         // char **splitted = ft_split(av[1], '^');
+
+        // (void) mlx_win;
         // char *tmp = strdup("");
         // while (splitted[i])
         // {
@@ -79,6 +94,11 @@ int main(int ac, char **av)
         }
                 // two++;
             i++;
+        }
+        if (two == 0 && one == 0)
+        {
+            printf("any real number is a solution\n");
+            exit(1);
         }
         delta = (one * one) - (4 * (two * zero));
         printf("%f------%f------ ^%f\n", one * one, zero, two);
