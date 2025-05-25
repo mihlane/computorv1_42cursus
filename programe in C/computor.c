@@ -95,9 +95,14 @@ int main(int ac, char **av)
                 // two++;
             i++;
         }
-        if (two == 0 && one == 0)
+        if (two == 0 && one == 0 && zero == 0)
         {
             printf("any real number is a solution\n");
+            exit(1);
+        }
+        else if (two == 0 && one == 0 && zero != 0)
+        {
+            printf("The equation has no solution !!\n");
             exit(1);
         }
         delta = (one * one) - (4 * (two * zero));
