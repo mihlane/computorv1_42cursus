@@ -26,6 +26,39 @@ double get_value(char *str, int i, bool sign, bool sign_of_num)
     return index;
 }
 
+void print_reduced_form(double a, double b, double c) {
+    printf("Reduced form: ");
+
+    // Term 1
+    printf("%.6g * X^0 ", a);
+
+    // Term 2
+    if (b < 0)
+        printf("- %.6g * X^1 ", -b);
+    else if (b > 0)
+        printf("+ %.6g * X^1 ", b);
+
+    // Term 3
+    if (c < 0)
+        printf("- %.6g * X^2", -c);
+    else if (c > 0)
+        printf("+ %.6g * X^2", c);
+
+    printf(" = 0\n");
+}
+
+
+int check_allowed_characters(const char *input) {
+    char * allowed_chars = "0123456789^X+-.=";
+    for (int i = 0; input[i] != '\0'; i++) {
+        if (strchr(allowed_chars, input[i]) == NULL) {
+            // Character not in allowed set
+            return 0;
+        }
+    }
+    return 1;
+}
+
 int main(int ac, char **av)
 {
     if (ac == 2)
@@ -95,6 +128,8 @@ int main(int ac, char **av)
                 // two++;
             i++;
         }
+        print_reduced_form(zero, one, two);
+        // printf("Reduced form: %+f * X^0 %+f * X^1 %+f * X^2 = 0\n", zero, one, two);
         if (two == 0 && one == 0 && zero == 0)
         {
             printf("any real number is a solution\n");
@@ -105,9 +140,14 @@ int main(int ac, char **av)
             printf("The equation has no solution !!\n");
             exit(1);
         }
+        else if (two == 0 && one != 0 && zero != 0)
+        {
+            printf("Polynomial degree: 1\nThe solution is:\n%f\n",-(zero / one) );
+            exit(0);
+        }
         delta = (one * one) - (4 * (two * zero));
-        printf("%f------%f------ ^%f\n", one * one, zero, two);
-        printf("delta  = %f\n", delta);
+        // printf("%f------%f------ ^%f\n", one * one, zero, two);
+        // printf("delta  = %f\n", delta);
         if (delta == 0)
         {
             printf("Discriminant is strictly positive, the two solutions are:\n%f\n", - (one / (2 * two)));
@@ -135,6 +175,8 @@ int main(int ac, char **av)
 
         // }
     }
-    printf("\n");
+    else{
+        printf("no equation given as first argument\n");
+    }
     return(0);
 }
