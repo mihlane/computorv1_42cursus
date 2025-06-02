@@ -3,6 +3,15 @@
 #include <math.h>
  
         // "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"
+enum {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
 
 double get_value(char *str, int i, bool sign, bool sign_of_num)
 {
@@ -58,50 +67,33 @@ int check_allowed_characters(const char *input) {
     }
     return 1;
 }
+int	key_handler(int keycode)
+{
+	if (keycode == 17)
+		exit(0);
+	// else if (keycode == XK_w)
+	// 	move_player(game, game->player_x, game->player_y - 1);
+	// else if (keycode == XK_s)
+	// 	move_player(game, game->player_x, game->player_y + 1);
+	// else if (keycode == XK_a)
+	// 	move_player(game, game->player_x - 1, game->player_y);
+	// else if (keycode == XK_d)
+	// 	move_player(game, game->player_x + 1, game->player_y);
+	return (0);
+}
 
 int main(int ac, char **av)
 {
     if (ac == 2)
     {
         int i = 0;
-        // char **numbers = malloc(sizeof(char*) * 3);
         double zero = 0;
         double one = 0;
         double two = 0;
         double delta;
-        // void	*mlx_win;
-        // void *mlx;
-        // char *str = "Badrive";
-        // int red = (255 << 16); // 0xFF0000
-
-        // // int i = 50;
-        // mlx = mlx_init();
-	    // mlx_win = mlx_new_window(mlx, 1000, 1000, "Hello world!");
-        // mlx_string_put(mlx, mlx_win, 100, 100, red,str);
-        // mlx_loop(mlx);
-
-	    // img = mlx_xpm_file_to_image(mlx, "player2.xpm", &i, &i);
-	    // mlx_put_image_to_window(mlx, mlx_win, img, i, i);
-        // char **splitted = ft_split(av[1], '^');
-
-        // (void) mlx_win;
-        // char *tmp = strdup("");
-        // while (splitted[i])
-        // {
-        //     int j = 0;
-        //     while (splitted[i][j] && splitted[i][j] >= '0' && splitted[i][j] <= '9')
-        //     {
-        //         tmp = ft_strjoin(tmp, &splitted[i][j]);
-        //         j++;
-        //     }
-        //     printf("%s\n", splitted[i]);
-        //     i++;
-        // }
-        // i = 0;
-
-        // int before_equal = 0;
         bool sign = true;
         bool sign_of_num = true;
+        
         while (av[1][i])
         {
             if (av[1][i] == '=')
@@ -129,7 +121,6 @@ int main(int ac, char **av)
             i++;
         }
         print_reduced_form(zero, one, two);
-        // printf("Reduced form: %+f * X^0 %+f * X^1 %+f * X^2 = 0\n", zero, one, two);
         if (two == 0 && one == 0 && zero == 0)
         {
             printf("any real number is a solution\n");
@@ -146,8 +137,6 @@ int main(int ac, char **av)
             exit(0);
         }
         delta = (one * one) - (4 * (two * zero));
-        // printf("%f------%f------ ^%f\n", one * one, zero, two);
-        // printf("delta  = %f\n", delta);
         if (delta == 0)
         {
             printf("Discriminant is strictly positive, the two solutions are:\n%f\n", - (one / (2 * two)));
@@ -163,17 +152,6 @@ int main(int ac, char **av)
             printf("the equation has no solution\n");
             exit(0);
         }
-        // numbers[0] = malloc(sizeof(char) * zero + 1);
-        // numbers[1] = malloc(sizeof(char) * one + 1);
-        // numbers[2] = malloc(sizeof(char) * two + 1);
-        // numbers[3] = NULL;
-        // i = 0;
-        // while (i < 3)
-        // {
-        //     printf("%s----\n", av[i]);
-        //     i++;
-
-        // }
     }
     else{
         printf("no equation given as first argument\n");
